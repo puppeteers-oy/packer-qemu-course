@@ -1,0 +1,5 @@
+SUBSCRIPTION_ID="<subscription-id>"
+LOCATION="northeurope"
+DISK_SIZE=13
+RESOURCE_GROUP_NAME="acmeimages"
+STORAGE_ACCOUNT_NAME="acmestorage"

@@ -1,0 +1,8 @@
+packer_cache
+*-output
+*.img
+*.swp
+**/build/**
+*.raw
+aws.vars
+azure.vars

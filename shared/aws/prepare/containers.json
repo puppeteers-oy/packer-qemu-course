@@ -1,0 +1,9 @@
+[
+    {
+     "Description":"vm import",
+     "Format":"raw",
+     "UserBucket": {
+        "S3Bucket": "xxS3BUCKETxx",
+        "S3Key": "xxS3KEYxx"
+}
+}]

@@ -1,0 +1,40 @@
+#cloud-config
+autoinstall:
+  version: 1
+  # Fetch latest version of autoinstall before starting
+  refresh-installer:
+    update: true
+  # Prevent packer from connecting to the _installer_ with SSH and trying to
+  # start provisioning.
+  #
+  # https://tlhakhan.medium.com/ubuntu-server-20-04-autoinstall-2e5f772b655a
+  #
+  early-commands:
+    - "systemctl stop ssh"
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+  apt:
+    preserve_sources_list: false
+    primary:
+        - arches: [i386, amd64]
+          uri: "http://archive.ubuntu.com/ubuntu"
+        - arches: [default]
+          uri: "http://ports.ubuntu.com/ubuntu-ports"
+    geoip: true
+  storage:
+    layout:
+      name: direct
+  identity:
+    hostname: ubuntu
+    username: packer
+    password: $6$dKrFdu40ro5tXn7h$8nrn.yd9gyk1d4KgdaA3LChvy9tQtwZrPPxGDwJzebQW5zS69HAf7XDI287VrCqh32YyOnm2C298Ujlmf68OS0 
+  ssh:
+    allow-pw: true
+    install-server: true
+  late-commands:
+    - "echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu"
+    - "chmod 440 /target/etc/sudoers.d/ubuntu"
+  user-data:
+    timezone: UTC
+    disable_root: true
